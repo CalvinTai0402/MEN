@@ -1,0 +1,27 @@
+- # npm install nodemon --global:
+    to install nodemon globally. Personally not preferred. Do
+  # npm install nodemon --save-dev
+    which will require a change in package.json:
+    "scripts": {
+        "start": "nodemon index.js"
+    }
+    Then run
+  # npm run start
+- # npm outdated:
+    to check for outdated packages
+- # npm update <package>:
+    to update package
+- "^" in front of the package version means that when npm update is run the latest MINOR version will be looked for. 
+  "~" in front of the package version means that when npm update is run the latest PATCH version will be looked for.
+  So "~" is safer if you don't want bugs. Note that npm update changed "~" to "^". 
+- Use @ to specify version when doing an npm install
+- # npm uninstall <package>
+- node_modules contains the dependencies of the dependencies of our app
+- Don't share node_modules. Just share package.json and package-lock.json, and run 
+  # npm install. This will install all the necessary dependencies.
+- Synchronous code is blocking hence bad. Asynchronous is non-blocking hence good.
+- Use url.parse to parse data from req.url
+- module.exports to export data
+- Use the http module to create a server
+- Use /<toBeMatched>/g as regex to replace all instances
+- For the script section of package.json ---> "dev": "nodemon --delay 300ms index.js". Make sure to pass the delay so that nodemon won't restart too quickly
