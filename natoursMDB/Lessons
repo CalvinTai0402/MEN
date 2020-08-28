@@ -1,0 +1,49 @@
+- CRUD: Create, Read, Update, Delete with respect to POST, GET, PATCH, DELETE
+- Status code: 200(success), 201(created), 204(deleted), 400(bad request), 404(not found), 500(internal server error)
+- app.use(express.json()) is the middleware and data will be saved in req.body
+- __dirname is the directory name that the file is in
+- Using synchronous top-level code is fine but don't use it for callbacks
+- in the path when we have ":<var>", the variable that comes next will be saved in req.params.<var>
+- Object.assign to create an Object
+- Use the fs module to write to and read from files
+- Use app.route to chain http methods
+- Create middleware using app.use and pass it in the next argument then call it
+- Mount a router to a route as a middle ware using app.use
+- Refactor code into an easy-to-understand file structure
+- Use express.Router().param(<param>, (req,res,next,val)=>{}) as a middle ware when the route has <param>
+- Chain multiple middleware. E.g., router.post(tourController.checkBody, tourController.createTour);
+- Serve static webpages: app.use(express.static(`${__dirname}/public`)); //To use go to 127.0.0.1:3000/overview.html. Must use the browser not POSTMAN
+- Create a config.env file and use dotenv.config({ path: './config.env' }) to use the env variables. We can also specify the env variables in the shell like: NODE_ENV=production nodemon index.js
+- Install mongodb:
+    # sudo apt update
+    # sudo apt upgrade
+    # sudo apt install mongodb
+- To verify successful installation;
+    # mongo
+    # db
+  You should see "test"
+- mongodb command:
+    1. use <database name>: create a new db if one with the name can't be found
+    2. show dbs: shows all databases
+    3. show collections: shows all collections of the database (must be executed in that database)
+    4. db.<collection>.insertOne({<JSON_datum>}): to insert one document
+    5. db.<collection>.insertMany([{<JSON_datum>}, {another_JSON_datum}]): to insert many document
+    6. db.<collection>.find(): retrieves all documents
+    7. db.<collection>.find({<criteria>}): retrieves all documents that match the specified criteria
+    8. db.<collection>.find({price: {$lte: 500}, rating: {$gt: 4.9}}): $lte is less than or equal to, gte, gt, lt...
+    9. db.<collection>.find({ $or: [{price: {$lte: 500}}, {rating: {$gt: 4.9}}]}): retrieves any document that satisfy either criterion
+    10. db.<collection>.find({ $or: [{price: {$lte: 500}}, {rating: {$gt: 4.9}}]}, {<property>: 1}): projects 1 means show, 0 means don't show
+    11. db.<collection>.updateOne({price: {$lte: 500}, rating: {$gt: 4.9}}, {$set: {<field>: <value>}}): field can be a new one or an existing one
+    12. db.<collection>.updateMany works as expected
+    13. db.<collection>.deleteOne({rating: {$lt: 4.8}})
+    14. db.<collection>.deleteMany works as expected
+    15. db.<collection>.deleteMany({}) deletes all documents
+- If a schema doesn't have a field, by creating a document (using the model that is defined by the Schema) with that field will result in the field not
+  being saved into the database.
+- Model.prototype means an object instantiated from a class.
+- JSON.stringify converts a JavaScript object or value to a JSON string
+- regular expression: \g makes sure all (not just the first) occurences are matched. /b makes sure of an exact match
+- Understand that req.query contains an object that has the properties of what comes after "?" int the URL
+- In the URL:
+    To use an operator like <=, >, etc, we do ?price[lt]=1500. 
+    To sort, we do sort= -<first property to sort>, <second property to sort>...The "-" sign makes it descending
